@@ -1,14 +1,14 @@
 #Include IME.ahk
 
 /**
- ESCでIME OFF
+ Esc でIMEをOFFにする
 
  - IMEがONで変換候補が**でてる**ときは、なにもしない
- - IMEがONで変換候補が**でてない**ときは、もう一度ESCが押されるのを400ms待機
-   - 400ms以内に一度ESCが**押された**ときは、ESCをSendしIMEをOFF
-   - 400ms以内にESCが**押されなかった**ときはなにもしない
-     - これは親指シフトでESCを使っているための処置
- - IMEがOFFのときはそのままESCをSend
+ - IMEがONで変換候補が**でてない**ときは、もう一度Escが押されるのを400ms待機
+   - 400ms以内に一度Escが**押された**ときは、EscをSendしIMEをOFF
+   - 400ms以内にEscが**押されなかった**ときはなにもしない
+     - これは親指シフトでEscを使っているための処置
+ - IMEがOFFのときはそのままEscをSend
  */
 $Esc::
   if (IME_GET(_mhwnd())) {
@@ -25,17 +25,17 @@ $Esc::
   Return
 
 /**
- Ctrl + RShiftでEnter
+ Ctrl + RShift でEnter
  */
 $^RShift::Send, {Enter}
 
 /**
- Ctrl +:でBackSpace
+ Ctrl + : でBackSpace
  */
 $^vkBA::Send, {BS}
 
 /**
- CTRL+hjklで移動
+ Ctrl + hjkl でカーソル移動
 */
 $^h::Send, {Left}
 $^j::Send, {Down}
@@ -43,24 +43,24 @@ $^k::Send, {Up}
 $^l::Send, {Right}
 
 /**
- Ctrl+ESC でIME切り替え
+ Ctrl + Esc でIME切り替え
 */
 $^Esc::Send,{vkF3}
 
 /**
- Tab+Escでアプリケーション切り替え
+ Tab + Escでアプリケーション切り替え
  */
 Esc & Tab::AltTab
 
 /**
- Shift+Escで親指シフト切り替え
+ Shift + Escで親指シフト切り替え
  */
 $+Esc::
   USE_OYAYUBI_SHIFT := USE_OYAYUBI_SHIFT = "true" ? "false" : "true"
   Return
 
 /**
- IMEがONかつ親指シフトフラグがTRUEのときに親指シフトが有効
+ IMEがONかつ親指シフトフラグが"true"のときに親指シフトが有効
  */
 IS_OYAYUBI_ON() {
   global
